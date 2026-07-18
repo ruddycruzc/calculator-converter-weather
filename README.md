@@ -141,7 +141,7 @@ La memoria permanecerá guardada incluso si se recarga la página gracias al uso
 | Testing E2E | Playwright |
 | Control de versiones | Git y GitHub |
 | Editor | Visual Studio Code |
-
+|Analisis de código | ESLint |
 ---
 
 # APIs utilizadas
@@ -360,6 +360,7 @@ ng e2e
 | `ng build` | Genera la versión de producción. |
 | `ng test` | Ejecuta las pruebas unitarias. |
 | `ng e2e` | Ejecuta las pruebas End-to-End. |
+| `ng lint` | Ejecuta el análisis de código. |
 
 ---
 
