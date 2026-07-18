@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CalculatorService } from '../../services/calculator-service';
 
 @Component({
   selector: 'app-calculator-display',
+  standalone: true,
   imports: [],
   templateUrl: './calculator-display.html',
   styleUrl: './calculator-display.css',
 })
-export class CalculatorDisplay {}
+export class CalculatorDisplay {
+
+  protected readonly calculatorService = inject(CalculatorService);
+
+}
