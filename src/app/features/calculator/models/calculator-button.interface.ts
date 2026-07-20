@@ -1,6 +1,6 @@
-export type ButtonType = 'number' | 'operator' | 'action';
+import { ButtonType } from "./button-type";
 
-export interface CalculatorButton {
+export interface CalculatorButtonConfig {
   label: string;
   value: string;
   type: ButtonType;

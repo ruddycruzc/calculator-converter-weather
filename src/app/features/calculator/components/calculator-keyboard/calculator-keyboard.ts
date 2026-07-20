@@ -10,7 +10,7 @@ import { CalculatorService } from '../../services/calculator-service';
   styleUrl: './calculator-keyboard.css',
 })
 export class CalculatorKeyboard {
-  
+
    private readonly calculatorService = inject(CalculatorService);
 
 
