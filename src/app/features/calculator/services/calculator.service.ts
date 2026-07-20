@@ -9,16 +9,13 @@ import { Operator } from '../models/operator.type';
   providedIn: 'root',
 })
 export class CalculatorService {
+  // ESTADO
+
   private readonly state = signal<CalculatorState>(initialCalculatorState);
 
   readonly display = computed(() => this.state().display);
 
-  private updateState(partialState: Partial<CalculatorState>): void {
-    this.state.update((state) => ({
-      ...state,
-      ...partialState,
-    }));
-  }
+  // API PUBLICA
 
   handleButton(button: CalculatorButtonConfig): void {
     switch (button.type) {
@@ -36,21 +33,37 @@ export class CalculatorService {
     }
   }
 
+  //NUMEROS
+
   private handleNumber(value: string): void {
-    const currentDisplay = this.display();
+    const state = this.state();
+    const currentDisplay = state.display;
+
+    if (state.waitingForOperand) {
+      this.updateState({
+        display: value,
+        waitingForOperand: false,
+      });
+
+      return;
+    }
 
     if (currentDisplay === '0') {
       this.updateState({
         display: value,
       });
+
+      return;
     }
+
     this.updateState({
       display: currentDisplay + value,
     });
   }
+  // OPERADORES
 
   private handleOperator(operator: Operator): void {
-    const currentValue = Number(this.display());
+    const currentValue = this.getCurrentValue();
 
     this.updateState({
       previousValue: currentValue,
@@ -59,5 +72,38 @@ export class CalculatorService {
     });
   }
 
-  private handleAction(action: string): void {}
+  // ACCIONES
+  private handleAction(action: string): void {
+    switch (action) {
+      case '=':
+        this.calculate();
+        break;
+
+      case 'CE':
+        this.clear();
+        break;
+    }
+  }
+  
+  //CAALCULOS
+
+
+  private calculate(): void {}
+
+  // REINICIO
+
+  private clear(): void { }
+
+
+  //HELPERS
+  private getCurrentValue(): number {
+    return Number(this.display());
+  }
+
+  private updateState(partialState: Partial<CalculatorState>): void {
+    this.state.update((state) => ({
+      ...state,
+      ...partialState,
+    }));
+  }
 }
