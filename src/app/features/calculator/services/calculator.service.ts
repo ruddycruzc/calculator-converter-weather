@@ -23,6 +23,23 @@ export class CalculatorService {
 }
 
 handleButton(button: CalculatorButtonConfig): void {
-  this.setDisplay(button.value);
+
+  if (button.type === 'number') {
+    this.handleNumber(button.value);
+  }
+
+}
+
+private handleNumber(value: string): void {
+
+  const currentDisplay = this.display();
+
+  if (currentDisplay === '0') {
+    this.setDisplay(value);
+    return;
+  }
+
+  this.setDisplay(currentDisplay + value);
+
 }
 }
