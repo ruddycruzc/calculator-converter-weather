@@ -2,6 +2,7 @@
   <app-calculator-display></app-calculator-display>
 
   <app-memory-panel></app-memory-panel>
-
-  <app-calculator-keyboard></app-calculator-keyboard>
+<app-calculator-keyboard
+  (buttonPressed)="onButtonPressed($event)">
+</app-calculator-keyboard>
 </section>

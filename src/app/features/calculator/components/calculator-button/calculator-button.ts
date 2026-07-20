@@ -3,6 +3,7 @@ import { CalculatorButtonConfig } from '../../models/calculator-button-config.in
 
 @Component({
   selector: 'app-calculator-button',
+  standalone: true,
   imports: [],
   templateUrl: './calculator-button.html',
   styleUrl: './calculator-button.css',

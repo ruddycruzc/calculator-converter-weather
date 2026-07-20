@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { Calculator } from '../../features/calculator/calculator';
+import { CalculatorComponent } from '../../features/calculator/calculator';
+;
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [Calculator],
+  imports: [CalculatorComponent],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.css',
 })

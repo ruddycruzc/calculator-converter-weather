@@ -5,6 +5,7 @@ import { CalculatorButtonConfig } from '../../models/calculator-button-config.in
 
 @Component({
   selector: 'app-calculator-keyboard',
+  standalone: true,
   imports: [CalculatorButtonComponent],
   templateUrl: './calculator-keyboard.html',
   styleUrl: './calculator-keyboard.css',

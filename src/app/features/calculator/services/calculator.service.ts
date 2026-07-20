@@ -2,6 +2,8 @@ import { Injectable, computed, signal } from '@angular/core';
 
 import { CalculatorState } from '../models/calculator-state.interface';
 import { initialCalculatorState } from '../models/initial-calculator-state';
+import { CalculatorButtonConfig } from '../models/calculator-button-config.interface';
+
 
 @Injectable({
   providedIn: 'root',
@@ -18,5 +20,9 @@ export class CalculatorService {
     ...state,
     display: value,
   }));
+}
+
+handleButton(button: CalculatorButtonConfig): void {
+  this.setDisplay(button.value);
 }
 }

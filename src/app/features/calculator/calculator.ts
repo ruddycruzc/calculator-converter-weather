@@ -1,16 +1,27 @@
-import { Component } from '@angular/core';
-import { CalculatorDisplayComponent } from './components/calculator-display/calculator-display';
-import { MemoryPanelComponent } from './components/memory-panel/memory-panel';
+import { Component, inject } from '@angular/core';
 import { CalculatorKeyboardComponent } from './components/calculator-keyboard/calculator-keyboard';
+import { CalculatorButtonConfig } from './models/calculator-button-config.interface';
 
+import { CalculatorService } from './services/calculator.service';
+import { MemoryPanelComponent } from './components/memory-panel/memory-panel';
+import { CalculatorDisplayComponent } from './components/calculator-display/calculator-display';
 @Component({
   selector: 'app-calculator',
-  imports: [
-   CalculatorDisplayComponent,
-   MemoryPanelComponent,
-   CalculatorKeyboardComponent
+  standalone: true,
+  imports: [MemoryPanelComponent,
+   CalculatorKeyboardComponent,
+   CalculatorDisplayComponent
   ],
   templateUrl: './calculator.html',
   styleUrl: './calculator.css',
 })
-export class CalculatorComponent {}
+export class CalculatorComponent {
+  private readonly calculatorService = inject(CalculatorService);
+
+onButtonPressed(button: CalculatorButtonConfig): void {
+  this.calculatorService.handleButton(button);
+}
+
+}
+
+
