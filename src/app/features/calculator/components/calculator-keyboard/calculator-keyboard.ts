@@ -8,4 +8,8 @@ import { CalculatorButton } from '../calculator-button/calculator-button';
   templateUrl: './calculator-keyboard.html',
   styleUrl: './calculator-keyboard.css',
 })
-export class CalculatorKeyboard {}
+export class CalculatorKeyboard {
+    onButtonPressed(value: string): void {
+    console.log(value);
+  }
+}

@@ -1,3 +1,7 @@
 <section class="calculator-keyboard">
-  <app-calculator-button label="1"></app-calculator-button>
+  <app-calculator-button 
+  label="1"
+  (pressed)="onButtonPressed($event)">
+
+  </app-calculator-button>
 </section>
