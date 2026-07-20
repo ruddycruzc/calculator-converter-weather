@@ -1,2 +1,2 @@
 
-export type Operator = '+' | '-' | '*' | '/' | null;
+export type Operator = '+' | '-' | '*' | '/' ;
