@@ -1,20 +1,21 @@
-import { Component, inject } from '@angular/core';
-import { CalculatorButton } from '../calculator-button/calculator-button';
-import { CalculatorService } from '../../services/calculator-service';
-
+import { Component, output } from '@angular/core';
+import { CalculatorButtonComponent } from '../calculator-button/calculator-button';
+import { CALCULATOR_BUTTONS } from '../../constants/calculator-buttons';
+import { CalculatorButtonConfig } from '../../models/calculator-button-config.interface';
 
 @Component({
   selector: 'app-calculator-keyboard',
-  imports: [CalculatorButton],
+  imports: [CalculatorButtonComponent],
   templateUrl: './calculator-keyboard.html',
   styleUrl: './calculator-keyboard.css',
 })
-export class CalculatorKeyboard {
+export class CalculatorKeyboardComponent {
 
-   private readonly calculatorService = inject(CalculatorService);
+  readonly buttons = CALCULATOR_BUTTONS;
 
+  readonly buttonPressed = output<CalculatorButtonConfig>();
 
-  onButtonPressed(value: string): void {
-    this.calculatorService.setDisplay(value);
+  onButtonPressed(button: CalculatorButtonConfig): void {
+    this.buttonPressed.emit(button);
   }
 }

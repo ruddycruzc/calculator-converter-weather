@@ -1,4 +1,5 @@
 import { Component, input, output } from '@angular/core';
+import { CalculatorButtonConfig } from '../../models/calculator-button-config.interface';
 
 @Component({
   selector: 'app-calculator-button',
@@ -6,13 +7,13 @@ import { Component, input, output } from '@angular/core';
   templateUrl: './calculator-button.html',
   styleUrl: './calculator-button.css',
 })
-export class CalculatorButton {
-  readonly label = input.required<string>();
+export class CalculatorButtonComponent {
+  readonly config = input.required<CalculatorButtonConfig>();
 
-  readonly pressed = output<string>();
+  readonly pressed = output<CalculatorButtonConfig>();
 
   
-  onClick(): void {
-    this.pressed.emit(this.label());
-  }
+onClick(): void {
+  this.pressed.emit(this.config());
+}
 }

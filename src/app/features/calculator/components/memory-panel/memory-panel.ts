@@ -6,4 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './memory-panel.html',
   styleUrl: './memory-panel.css',
 })
-export class MemoryPanel {}
+export class MemoryPanelComponent {}

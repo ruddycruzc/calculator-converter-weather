@@ -8,7 +8,7 @@ import { CalculatorService } from '../../services/calculator-service';
   templateUrl: './calculator-display.html',
   styleUrl: './calculator-display.css',
 })
-export class CalculatorDisplay {
+export class CalculatorDisplayComponent {
 
   protected readonly calculatorService = inject(CalculatorService);
 

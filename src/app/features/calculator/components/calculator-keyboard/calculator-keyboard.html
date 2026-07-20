@@ -1,7 +1,12 @@
 <section class="calculator-keyboard">
-  <app-calculator-button 
-  label="1"
-  (pressed)="onButtonPressed($event)">
 
-  </app-calculator-button>
+  @for (button of buttons; track button.value) {
+
+    <app-calculator-button
+      [config]="button"
+      (pressed)="onButtonPressed($event)">
+    </app-calculator-button>
+
+  }
+
 </section>

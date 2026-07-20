@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { CalculatorDisplay } from './components/calculator-display/calculator-display';
-import { MemoryPanel } from './components/memory-panel/memory-panel';
-import { CalculatorKeyboard } from './components/calculator-keyboard/calculator-keyboard';
+import { CalculatorDisplayComponent } from './components/calculator-display/calculator-display';
+import { MemoryPanelComponent } from './components/memory-panel/memory-panel';
+import { CalculatorKeyboardComponent } from './components/calculator-keyboard/calculator-keyboard';
 
 @Component({
   selector: 'app-calculator',
   imports: [
-   CalculatorDisplay,
-   MemoryPanel,
-   CalculatorKeyboard
+   CalculatorDisplayComponent,
+   MemoryPanelComponent,
+   CalculatorKeyboardComponent
   ],
   templateUrl: './calculator.html',
   styleUrl: './calculator.css',
 })
-export class Calculator {}
+export class CalculatorComponent {}

@@ -1,4 +1,4 @@
-import { CalculatorButtonConfig } from '../models/calculator-button.interface';
+import { CalculatorButtonConfig } from '../models/calculator-button-config.interface';
 
 export const CALCULATOR_BUTTONS: CalculatorButtonConfig[] = [
   { label: '7', value: '7', type: 'number' },
