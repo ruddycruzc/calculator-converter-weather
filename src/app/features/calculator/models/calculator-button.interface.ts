@@ -1,4 +1,7 @@
+export type ButtonType = 'number' | 'operator' | 'action';
+
 export interface CalculatorButton {
   label: string;
-  type: 'number' | 'operator' | 'action';
+  value: string;
+  type: ButtonType;
 }
