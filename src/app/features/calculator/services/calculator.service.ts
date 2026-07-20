@@ -76,8 +76,7 @@ export class CalculatorService {
   private handleAction(action: string): void {
     switch (action) {
       case '=':
-        this.calculate(
-        );
+        this.calculate();
         break;
 
       case 'CE':
@@ -85,45 +84,48 @@ export class CalculatorService {
         break;
     }
   }
-  
-  //CAALCULOS
 
+  //CAALCULOS
 
   private calculate(): void {
     //SUMA
+
     const state = this.state();
 
-      if (state.operator === null || state.previousValue === null) {
-      return;}
-
-    const currentValue = this.getCurrentValue();
-     let result = 0;
-
-     switch (state.operator) {
-
-     case '+':
-        result = state.previousValue + currentValue;
-        break;
-
+    if (state.operator === null || state.previousValue === null) {
+      return;
     }
+    const currentValue = this.getCurrentValue();
+
+    const result = this.performOperation(state.operator, state.previousValue, currentValue);
+
     this.updateState({
-
-        display: result.toString(),
-
-        previousValue: null,
-
-        operator: null,
-
-        waitingForOperand: false,
-
-      });
-  
+      display: result.toString(),
+      previousValue: null,
+      operator: null,
+      waitingForOperand: false,
+    });
   }
+  private performOperation(operator: Operator, left: number, right: number): number {
+    switch (operator) {
+      case '+':
+        return left + right;
 
+    case '-':
+      return left - right;
+
+    case '*':
+      return left * right;
+
+    case '/':
+      return left / right;
+    }
+  }
   // REINICIO
 
-  private clear(): void { }
-
+  private clear(): void {
+      this.state.set(initialCalculatorState);
+  }
 
   //HELPERS
   private getCurrentValue(): number {
