@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-calculator-button',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './calculator-button.html',
   styleUrl: './calculator-button.css',
 })
-export class CalculatorButton {}
+export class CalculatorButton {
+ readonly label = input.required<string>();
+}
