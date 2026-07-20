@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-calculator-button',
@@ -7,5 +7,12 @@ import { Component, input } from '@angular/core';
   styleUrl: './calculator-button.css',
 })
 export class CalculatorButton {
- readonly label = input.required<string>();
+  readonly label = input.required<string>();
+
+  readonly pressed = output<string>();
+
+  
+  onClick(): void {
+    this.pressed.emit(this.label());
+  }
 }
