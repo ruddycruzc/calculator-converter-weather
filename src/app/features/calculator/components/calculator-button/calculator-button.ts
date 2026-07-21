@@ -9,12 +9,12 @@ import { CalculatorButtonConfig } from '../../models/calculator-button-config.in
   styleUrl: './calculator-button.css',
 })
 export class CalculatorButtonComponent {
-  readonly config = input.required<CalculatorButtonConfig>();
+  readonly button = input.required<CalculatorButtonConfig>();
 
   readonly pressed = output<CalculatorButtonConfig>();
 
   
 onClick(): void {
-  this.pressed.emit(this.config());
+  this.pressed.emit(this.button());
 }
 }

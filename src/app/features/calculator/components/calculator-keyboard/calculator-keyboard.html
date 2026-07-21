@@ -3,7 +3,7 @@
   @for (button of buttons; track button.value) {
 
     <app-calculator-button
-      [config]="button"
+      [button]="button"
       [class.button-span-2]="button.variant === 'equals'"
       (pressed)="onButtonPressed($event)">
     </app-calculator-button>

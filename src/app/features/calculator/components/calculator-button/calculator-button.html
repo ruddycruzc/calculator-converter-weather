@@ -1,3 +1,6 @@
-<button (click)="onClick()">
-  {{ config().label }}
+<button 
+  class="calculator-button"
+  [class]="'calculator-button calculator-button--' + button().variant"
+  (click)="onClick()">
+  {{ button().label }}
 </button>
