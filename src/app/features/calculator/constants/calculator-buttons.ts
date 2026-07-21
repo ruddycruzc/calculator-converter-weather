@@ -20,4 +20,5 @@ export const CALCULATOR_BUTTONS: CalculatorButtonConfig[] = [
   { label: '0', value: '0', type: 'number' },
   { label: '=', value: '=', type: 'action' },
   { label: '+', value: '+', type: 'operator' },
+  {label: 'CE', value: 'CE', type: 'action' }
 ];

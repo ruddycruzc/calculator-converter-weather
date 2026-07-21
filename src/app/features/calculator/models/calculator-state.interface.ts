@@ -5,4 +5,5 @@ export interface CalculatorState {
   previousValue: number | null;
   operator: Operator| null;
   waitingForOperand: boolean;
+  hasError: boolean;
 }

@@ -5,4 +5,5 @@ export const initialCalculatorState: CalculatorState = {
   previousValue: null,
   operator: null,
   waitingForOperand: false,
+  hasError: false,
 };

@@ -18,6 +18,13 @@ export class CalculatorService {
   // API PUBLICA
 
   handleButton(button: CalculatorButtonConfig): void {
+
+  const state = this.state();
+
+  if (state.hasError && button.value !== 'CE') {
+    return;
+  }
+
     switch (button.type) {
       case 'number':
         this.handleNumber(button.value);
