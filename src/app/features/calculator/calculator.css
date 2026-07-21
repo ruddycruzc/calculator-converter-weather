@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  padding: 1.5rem;
+
+  border-radius: 1.5rem;
+}
+
+.calculator__header,
+.calculator__memory,
+.calculator__keyboard {
+  width: 100%;
+}
