@@ -5,11 +5,12 @@
 .calculator {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-lg);
 
-  padding: 1.5rem;
+  background: var(--calculator-body);
 
-  border-radius: 1.5rem;
+  box-shadow: var(--shadow-md);
 }
 
 .calculator__header,
