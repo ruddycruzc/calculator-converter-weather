@@ -1,22 +1,19 @@
-<main class="min-h-screen flex items-center justify-center p-4">
+<main class="calculator-layout">
 
-  <section
-    class="calculator w-full max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
-
+ <section class="calculator">
     <header class="calculator__header">
       <app-calculator-display />
     </header>
+
+    <div class="calculator__accent"></div>
 
     <aside class="calculator__memory">
       <app-memory-panel />
     </aside>
 
     <section class="calculator__keyboard">
-      <app-calculator-keyboard
-        (buttonPressed)="onButtonPressed($event)">
-      </app-calculator-keyboard>
+      <app-calculator-keyboard (buttonPressed)="onButtonPressed($event)"> </app-calculator-keyboard>
     </section>
 
   </section>
-
 </main>
