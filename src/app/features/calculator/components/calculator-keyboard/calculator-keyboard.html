@@ -4,6 +4,7 @@
 
     <app-calculator-button
       [config]="button"
+      [class.button-span-2]="button.variant === 'equals'"
       (pressed)="onButtonPressed($event)">
     </app-calculator-button>
 

@@ -1,24 +1,61 @@
 import { CalculatorButtonConfig } from '../models/calculator-button-config.interface';
+import { ButtonVariant } from '../models/button-variant.type';
+
+const numberButton = (value: string): CalculatorButtonConfig => ({
+  label: value,
+  value,
+  type: 'number',
+  variant: 'number',
+});
+
+const operatorButton = (
+  label: string,
+  value: string
+): CalculatorButtonConfig => ({
+  label,
+  value,
+  type: 'operator',
+  variant: 'operator',
+});
+
+const actionButton = (
+  label: string,
+  variant: ButtonVariant = 'action'
+): CalculatorButtonConfig => ({
+  label,
+  value: label,
+  type: 'action',
+  variant,
+});
+
 
 export const CALCULATOR_BUTTONS: CalculatorButtonConfig[] = [
-  { label: '7', value: '7', type: 'number' },
-  { label: '8', value: '8', type: 'number' },
-  { label: '9', value: '9', type: 'number' },
-  { label: '÷', value: '/', type: 'operator' },
+  // Row 1
+  actionButton('CE'),
+  actionButton('MC', 'memory'),
+  actionButton('MR', 'memory'),
+  operatorButton('÷', '/'),
 
-  { label: '4', value: '4', type: 'number' },
-  { label: '5', value: '5', type: 'number' },
-  { label: '6', value: '6', type: 'number' },
-  { label: '×', value: '*', type: 'operator' },
+  // Row 2
+  numberButton('7'),
+  numberButton('8'),
+  numberButton('9'),
+  operatorButton('×', '*'),
 
-  { label: '1', value: '1', type: 'number' },
-  { label: '2', value: '2', type: 'number' },
-  { label: '3', value: '3', type: 'number' },
-  { label: '-', value: '-', type: 'operator' },
+  // Row 3
+  numberButton('4'),
+  numberButton('5'),
+  numberButton('6'),
+  operatorButton('-', '-'),
 
-  { label: '.', value: '.', type: 'action' },
-  { label: '0', value: '0', type: 'number' },
-  { label: '=', value: '=', type: 'action' },
-  { label: '+', value: '+', type: 'operator' },
-  {label: 'CE', value: 'CE', type: 'action' }
+  // Row 4
+  numberButton('1'),
+  numberButton('2'),
+  numberButton('3'),
+  operatorButton('+', '+'),
+
+  // Row 5
+  numberButton('0'),
+  actionButton('.'),
+  actionButton('=', 'equals'),
 ];

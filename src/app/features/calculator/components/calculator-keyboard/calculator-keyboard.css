@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.calculator-keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-md);
+
+}
+/* TABLET ≥ 768px*/
+
+@media (min-width:768px){
+
+    .calculator-keyboard{
+        gap:var(--spacing-lg);
+    }
+}
+
+/*DESKTOP ≥ 1024px*/
+
+@media (min-width:1024px){
+    .calculator-keyboard{
+        gap:calc(var(--spacing-lg) + .25rem);
+
+    }
+}
