@@ -10,6 +10,9 @@ import { CalculatorService } from '../../services/calculator.service';
 })
 export class CalculatorDisplayComponent {
 
+  
+
   protected readonly calculatorService = inject(CalculatorService);
+  protected readonly display = this.calculatorService.display;
 
 }
