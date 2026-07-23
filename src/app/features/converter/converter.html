@@ -66,13 +66,13 @@
     }
 
     @if (result() !== null) {
-      <p>
-        {{ amount() }}
-        {{ fromCurrency() }}
-        =
-        {{ result() }}
-        {{ toCurrency() }}
-      </p>
+<p>
+  {{ amount() }}
+  {{ fromCurrency() }}
+  =
+  {{ formattedResult() }}
+  {{ toCurrency() }}
+</p>
     }
 
   </div>
