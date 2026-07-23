@@ -1,0 +1,156 @@
+.converter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+
+  width: 100%;
+  max-width: 420px;
+
+  margin: 0 auto;
+  padding: var(--spacing-xl);
+
+  background: var(--surface-primary);
+  border-radius: var(--radius-xl);
+
+  box-shadow: var(--shadow-md);
+}
+
+.converter h2 {
+  margin: 0;
+
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  text-align: center;
+
+  color: var(--text-primary);
+}
+
+.converter__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.converter__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.converter__field label {
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.converter__field input,
+.converter__field select {
+
+  width: 100%;
+
+  padding: var(--spacing-md);
+
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+
+  background: var(--button-number);
+
+  font-family: var(--font-body);
+  font-size: 1rem;
+
+  transition: var(--transition);
+}
+
+.converter__field input:focus,
+.converter__field select:focus {
+
+  outline: none;
+
+  border-color: var(--focus-ring);
+
+  box-shadow:
+    0 0 0 4px rgba(124,198,255,.25);
+}
+
+.converter button {
+
+  padding: var(--spacing-md);
+
+  border: none;
+  border-radius: var(--radius-md);
+
+  background: var(--button-equals);
+
+  color: var(--text-primary);
+
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: var(--transition);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.converter button:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow: var(--shadow-md);
+
+}
+
+.converter button:active {
+
+  transform: translateY(1px);
+
+  box-shadow: var(--shadow-sm);
+
+}
+
+.converter button:disabled {
+
+  opacity: .6;
+  cursor: not-allowed;
+
+}
+
+.converter__result {
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+
+  padding: var(--spacing-lg);
+
+  border-radius: var(--radius-lg);
+
+  background: var(--mint);
+
+  text-align: center;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.converter__result small {
+
+  font-size: .8rem;
+  font-weight: 600;
+
+  color: var(--text-secondary);
+
+  text-transform: uppercase;
+
+  letter-spacing: .08em;
+}
+
+.converter__result p {
+
+  margin: 0;
+
+  font-size: 1.25rem;
+  font-weight: 700;
+
+  color: var(--text-primary);
+}
