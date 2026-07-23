@@ -9,12 +9,11 @@ import { CurrencyService } from './services/currency.service';
   styleUrl: './converter.css',
 })
 export class CurrencyConverterComponent implements OnInit {
+  private readonly currencyService = inject(CurrencyService);
 
-private readonly currencyService = inject(CurrencyService);
-
-readonly rates = this.currencyService.rates;
-readonly loading = this.currencyService.loading;
-readonly error = this.currencyService.error;
+  readonly rates = this.currencyService.rates;
+  readonly loading = this.currencyService.loading;
+  readonly error = this.currencyService.error;
 
   amount = signal(1);
   fromCurrency = signal('EUR');
@@ -22,48 +21,56 @@ readonly error = this.currencyService.error;
   result = signal<number | null>(null);
 
   readonly currencies = computed(() => {
-
     const response = this.rates();
 
     if (!response) {
       return [];
     }
 
-    return Object.keys(response.rates);
-
+  return ['EUR', 'USD', 'JPY'];
   });
 
-ngOnInit(): void {
-  this.currencyService.loadRates();
-}
+  ngOnInit(): void {
+    this.currencyService.loadRates();
+  }
 
-onAmountChange(event: Event): void {
+  onAmountChange(event: Event): void {
+    const value = Number((event.target as HTMLInputElement).value);
 
-  const value = Number(
-    (event.target as HTMLInputElement).value
-  );
+    this.amount.set(value);
+  }
 
-  this.amount.set(value);
+  onFromCurrencyChange(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value;
 
-}
-
- onFromCurrencyChange(event: Event): void {
-
-  const value =
-    (event.target as HTMLSelectElement).value;
-
-  this.fromCurrency.set(value);
-
-}
+    this.fromCurrency.set(value);
+  }
 
   onToCurrencyChange(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value;
 
-  const value =
-    (event.target as HTMLSelectElement).value;
+    this.toCurrency.set(value);
+  }
 
-  this.toCurrency.set(value);
+  convert(): void {
+    const response = this.rates();
 
-}
+    if (!response) {
+      return;
+    }
 
-  convert(): void {}
+    const fromRate = Number(response.rates[this.fromCurrency()]);
+
+    const toRate = Number(response.rates[this.toCurrency()]);
+
+    const amount = this.amount();
+
+    const usdAmount = amount / fromRate;
+
+    const result = Number(
+      (usdAmount * toRate).toFixed(2)
+    );
+
+    this.result.set(result);
+  }
 }
