@@ -43,6 +43,22 @@
 
 --border-color: #E2E8F0;
 
+/* Calculator */
+
+--button-number: #F7F2EB;
+
+--button-operator: #A9D6E5;
+
+--button-memory: #F7D9E3;
+
+--button-action: #E9F4F1;
+
+--button-equals: #FFD166;
+
+--button-shadow: rgba(0,0,0,.18);
+
+--button-shadow-active: rgba(0,0,0,.10);
+
 
   /* Glass */
 --glass-border: rgba(255,255,255,.35);
@@ -63,5 +79,10 @@
 
   /* Animation */
 --transition: .25s ease;
+--transition-fast: .15s ease;
+
+/* Focus */
+
+--focus-ring: #7CC6FF;
 
 }
