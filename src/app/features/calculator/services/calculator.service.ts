@@ -18,16 +18,15 @@ export class CalculatorService {
   // API PUBLICA
 
   handleButton(button: CalculatorButtonConfig): void {
+    const state = this.state();
 
-  const state = this.state();
-
-  if (state.hasError && button.value !== 'CE') {
-    return;
-  }
-if (button.value === '.') {
-  this.handleDecimal();
-  return;
-}
+    if (state.hasError && button.value !== 'CE') {
+      return;
+    }
+    if (button.value === '.') {
+      this.handleDecimal();
+      return;
+    }
     switch (button.type) {
       case 'number':
         this.handleNumber(button.value);
@@ -66,7 +65,6 @@ if (button.value === '.') {
       return;
     }
 
-
     this.updateState({
       display: currentDisplay + value,
     });
@@ -74,29 +72,27 @@ if (button.value === '.') {
 
   //DECIMAL
   private handleDecimal(): void {
+    const state = this.state();
 
-  const state = this.state();
+    if (state.waitingForOperand) {
+      this.updateState({
+        display: '0.',
+        waitingForOperand: false,
+      });
 
-  if (state.waitingForOperand) {
+      return;
+    }
+
+    // Si ya existe un decimal, no hacemos nada
+    if (state.display.includes('.')) {
+      return;
+    }
+
+    // Añade el punto decimal
     this.updateState({
-      display: '0.',
-      waitingForOperand: false
+      display: `${state.display}.`,
     });
-
-    return;
   }
-
-  // Si ya existe un decimal, no hacemos nada
-  if (state.display.includes('.')) {
-    return;
-  }
-
-  // Añade el punto decimal
-  this.updateState({
-    display: `${state.display}.`
-  });
-
-}
   // OPERADORES
 
   private handleOperator(operator: Operator): void {
@@ -119,7 +115,6 @@ if (button.value === '.') {
       case 'CE':
         this.clear();
         break;
-
 
       case 'M+':
         this.addToMemory();
@@ -149,6 +144,10 @@ if (button.value === '.') {
 
     const result = this.performOperation(state.operator, state.previousValue, currentValue);
 
+    if (this.state().hasError) {
+      return;
+    }
+
     this.updateState({
       display: result.toString(),
       previousValue: null,
@@ -156,33 +155,42 @@ if (button.value === '.') {
       waitingForOperand: false,
     });
   }
+
+  
   private performOperation(operator: Operator, left: number, right: number): number {
     switch (operator) {
       case '+':
         return left + right;
 
-    case '-':
-      return left - right;
+      case '-':
+        return left - right;
 
-    case '*':
-      return left * right;
+      case '*':
+        return left * right;
 
-    case '/':
-      return left / right;
+      case '/':
+        if (right === 0) {
+          this.updateState({
+            display: 'Error',
+            hasError: true,
+          });
+
+          return 0;
+        }
+
+        return left / right;
     }
   }
   // REINICIO
 
-private clear(): void {
+  private clear(): void {
+    const memoryValue = this.state().memoryValue;
 
-  const memoryValue = this.state().memoryValue;
-
-  this.state.set({
-    ...initialCalculatorState,
-    memoryValue
-  });
-
-}
+    this.state.set({
+      ...initialCalculatorState,
+      memoryValue,
+    });
+  }
 
   //HELPERS
   private getCurrentValue(): number {
@@ -196,45 +204,33 @@ private clear(): void {
     }));
   }
 
+  //MEMORY
+  private addToMemory(): void {
+    const state = this.state();
+    const currentValue = this.getCurrentValue();
 
+    this.updateState({
+      memoryValue: (state.memoryValue ?? 0) + currentValue,
+      waitingForOperand: true,
+    });
+  }
+  //RECALL MAMORY
+  private recallMemory(): void {
+    const memory = this.state().memoryValue;
 
-//MEMORY
-private addToMemory(): void {
+    if (memory === null) {
+      return;
+    }
 
-  const state = this.state();
-  const currentValue = this.getCurrentValue();
-
-  this.updateState({
-    memoryValue: (state.memoryValue ?? 0) + currentValue,
-    waitingForOperand: true
-  });
-
-}
-//RECALL MAMORY
-private recallMemory(): void {
-
-  const memory = this.state().memoryValue;
-
-  if (memory === null) {
-    return;
+    this.updateState({
+      display: memory.toString(),
+      waitingForOperand: true,
+    });
   }
 
-  this.updateState({
-
-    display: memory.toString(),
-    waitingForOperand: true
-
-  });
-
-}
-
-private clearMemory(): void {
-
-  this.updateState({
-
-    memoryValue: null
-
-  });
-
-}
+  private clearMemory(): void {
+    this.updateState({
+      memoryValue: null,
+    });
+  }
 }
