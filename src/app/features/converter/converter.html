@@ -1,1 +1,80 @@
-<p>hello</p>
+<section class="converter">
+
+  <h2>Conversor de divisas</h2>
+
+  <div class="converter__form">
+
+    <div class="converter__field">
+      <label for="amount">Cantidad</label>
+
+      <input
+        id="amount"
+        type="number"
+        min="0"
+        [value]="amount()"
+        (input)="onAmountChange($event)">
+    </div>
+
+    <div class="converter__field">
+      <label for="from">Desde</label>
+
+      <select
+        id="from"
+        [value]="fromCurrency()"
+        (change)="onFromCurrencyChange($event)">
+
+        @for (currency of currencies(); track currency) {
+          <option [value]="currency">
+            {{ currency }}
+          </option>
+        }
+
+      </select>
+    </div>
+
+    <div class="converter__field">
+      <label for="to">Hacia</label>
+
+      <select
+        id="to"
+        [value]="toCurrency()"
+        (change)="onToCurrencyChange($event)">
+
+        @for (currency of currencies(); track currency) {
+          <option [value]="currency">
+            {{ currency }}
+          </option>
+        }
+
+      </select>
+    </div>
+
+    <button (click)="convert()">
+      Convertir
+    </button>
+
+  </div>
+
+  <div class="converter__result">
+
+    @if (loading()) {
+      <p>Cargando divisas...</p>
+    }
+
+    @if (error()) {
+      <p>{{ error() }}</p>
+    }
+
+    @if (result() !== null) {
+      <p>
+        {{ amount() }}
+        {{ fromCurrency() }}
+        =
+        {{ result() }}
+        {{ toCurrency() }}
+      </p>
+    }
+
+  </div>
+
+</section>
