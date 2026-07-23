@@ -1,7 +1,7 @@
 import { Component, output } from '@angular/core';
 import { CalculatorButtonConfig } from '../../models/calculator-button-config.interface';
 import { CalculatorButtonComponent } from '../calculator-button/calculator-button';
-import { MEMORY_BUTTONS } from '../../constants/memory-buttons';
+import { MEMORY_BUTTONS } from '../../constants/memory-buttons.constants';
 
 @Component({
   selector: 'app-memory-panel',

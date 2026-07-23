@@ -1,6 +1,6 @@
 import { Component, output } from '@angular/core';
 import { CalculatorButtonComponent } from '../calculator-button/calculator-button';
-import { CALCULATOR_BUTTONS } from '../../constants/calculator-buttons';
+import { CALCULATOR_BUTTONS } from '../../constants/calculator-buttons.constants';
 import { CalculatorButtonConfig } from '../../models/calculator-button-config.interface';
 
 @Component({

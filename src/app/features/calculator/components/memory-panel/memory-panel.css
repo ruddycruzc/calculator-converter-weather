@@ -1,19 +1,11 @@
 :host{
-
     display:block;
-
     width:100%;
-
 }
 
 .memory-panel{
-
     display:grid;
-
     grid-template-columns:repeat(4,1fr);
-
     gap:var(--spacing-sm);
-
     width:100%;
-
 }
