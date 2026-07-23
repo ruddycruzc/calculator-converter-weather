@@ -6,4 +6,5 @@ export interface CalculatorState {
   operator: Operator| null;
   waitingForOperand: boolean;
   hasError: boolean;
+  memoryValue: number | null;
 }

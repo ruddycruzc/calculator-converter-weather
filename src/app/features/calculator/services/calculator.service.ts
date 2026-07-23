@@ -89,6 +89,19 @@ export class CalculatorService {
       case 'CE':
         this.clear();
         break;
+
+
+      case 'M+':
+        this.addToMemory();
+        break;
+
+      case 'MR':
+        this.recallMemory();
+        break;
+
+      case 'MC':
+        this.clearMemory();
+        break;
     }
   }
 
@@ -130,9 +143,16 @@ export class CalculatorService {
   }
   // REINICIO
 
-  private clear(): void {
-      this.state.set(initialCalculatorState);
-  }
+private clear(): void {
+
+  const memoryValue = this.state().memoryValue;
+
+  this.state.set({
+    ...initialCalculatorState,
+    memoryValue
+  });
+
+}
 
   //HELPERS
   private getCurrentValue(): number {
@@ -145,4 +165,48 @@ export class CalculatorService {
       ...partialState,
     }));
   }
+
+
+
+//MEMORY
+private addToMemory(): void {
+
+  const state = this.state();
+  const currentValue = this.getCurrentValue();
+
+  this.updateState({
+    memoryValue: (state.memoryValue ?? 0) + currentValue,
+    waitingForOperand: true
+  });
+
+}
+//RECALL MAMORY
+private recallMemory(): void {
+
+  const memory = this.state().memoryValue;
+
+  if (memory === null) {
+    return;
+  }
+
+  this.updateState({
+
+    display: memory.toString(),
+    waitingForOperand: true
+
+  });
+
+}
+
+private clearMemory(): void {
+
+  this.updateState({
+
+    memoryValue: null
+
+  });
+
+}
+
+
 }

@@ -6,4 +6,5 @@ export const initialCalculatorState: CalculatorState = {
   operator: null,
   waitingForOperand: false,
   hasError: false,
+  memoryValue: null,
 };
