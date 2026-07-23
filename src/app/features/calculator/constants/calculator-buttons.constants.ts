@@ -21,7 +21,7 @@ export const CALCULATOR_BUTTONS: CalculatorButtonConfig[] = [
   operatorButton('-', '-'),
 
   numberButton('0'),
-  actionButton('.'),
+  actionButton('.', 'number'),
   actionButton('=', 'equals'),
   operatorButton('+', '+'),
 ];

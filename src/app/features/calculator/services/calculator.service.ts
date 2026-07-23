@@ -24,7 +24,10 @@ export class CalculatorService {
   if (state.hasError && button.value !== 'CE') {
     return;
   }
-
+if (button.value === '.') {
+  this.handleDecimal();
+  return;
+}
     switch (button.type) {
       case 'number':
         this.handleNumber(button.value);
@@ -63,10 +66,37 @@ export class CalculatorService {
       return;
     }
 
+
     this.updateState({
       display: currentDisplay + value,
     });
   }
+
+  //DECIMAL
+  private handleDecimal(): void {
+
+  const state = this.state();
+
+  if (state.waitingForOperand) {
+    this.updateState({
+      display: '0.',
+      waitingForOperand: false
+    });
+
+    return;
+  }
+
+  // Si ya existe un decimal, no hacemos nada
+  if (state.display.includes('.')) {
+    return;
+  }
+
+  // Añade el punto decimal
+  this.updateState({
+    display: `${state.display}.`
+  });
+
+}
   // OPERADORES
 
   private handleOperator(operator: Operator): void {
@@ -207,6 +237,4 @@ private clearMemory(): void {
   });
 
 }
-
-
 }
