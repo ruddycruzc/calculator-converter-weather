@@ -1,5 +1,12 @@
 <section class="memory-panel">
-  <button>M+</button>
-  <button>MR</button>
-  <button>MC</button>
+
+  @for (button of buttons; track button.label) {
+
+    <app-calculator-button
+      [button]="button"
+      (pressed)="onButtonPressed($event)">
+    </app-calculator-button>
+
+  }
+
 </section>

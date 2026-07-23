@@ -3,4 +3,5 @@ export type ActionType =
   | '.'
   | 'CE'
   | 'MC'
-  | 'MR';
+  | 'MR'
+  |'M+';

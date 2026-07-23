@@ -8,7 +8,11 @@
     <div class="calculator__accent"></div>
 
     <aside class="calculator__memory">
-      <app-memory-panel />
+      <app-memory-panel
+      (buttonPressed)="onButtonPressed($event)">
+
+      </app-memory-panel>
+       
     </aside>
 
     <section class="calculator__keyboard">
