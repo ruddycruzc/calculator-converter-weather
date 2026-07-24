@@ -60,27 +60,39 @@ export class CurrencyConverterComponent implements OnInit {
     this.currencyService.loadRates();
   }
 
-  onAmountChange(event: Event): void {
-    const value = Number(
-      (event.target as HTMLInputElement).value
-    );
+onAmountChange(event: Event): void {
 
-    this.amount.set(value);
-  }
+  const value = Number(
+    (event.target as HTMLInputElement).value
+  );
 
-  onFromCurrencyChange(event: Event): void {
-    const value =
-      (event.target as HTMLSelectElement).value;
+  this.amount.set(value);
 
-    this.fromCurrency.set(value);
-  }
+  this.convert();
 
-  onToCurrencyChange(event: Event): void {
-    const value =
-      (event.target as HTMLSelectElement).value;
+}
 
-    this.toCurrency.set(value);
-  }
+onFromCurrencyChange(event: Event): void {
+
+  const value =
+    (event.target as HTMLSelectElement).value;
+
+  this.fromCurrency.set(value);
+
+  this.convert();
+
+}
+
+onToCurrencyChange(event: Event): void {
+
+  const value =
+    (event.target as HTMLSelectElement).value;
+
+  this.toCurrency.set(value);
+
+  this.convert();
+
+}
 
   convert(): void {
 
@@ -130,5 +142,19 @@ export class CurrencyConverterComponent implements OnInit {
       (usdAmount * toRate).toFixed(2)
     );
   }
+
+  swapCurrencies(): void {
+
+  const from = this.fromCurrency();
+
+  this.fromCurrency.set(
+    this.toCurrency()
+  );
+
+  this.toCurrency.set(from);
+
+  this.convert();
+
+}
 
 }
