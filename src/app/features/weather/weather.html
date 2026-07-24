@@ -1,1 +1,7 @@
-<p>weather works!</p>
+<h2>Weather</h2>
+
+<p>Municipios: {{ municipalities().length }}</p>
+
+@for (municipality of municipalities(); track municipality.CODIGOINE) {
+  <p>{{ municipality.NOMBRE }}</p>
+}
